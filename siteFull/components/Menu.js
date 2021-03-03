@@ -26,7 +26,7 @@ import {
                   <NavLink href="/">Home</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/">Orçamento</NavLink>
+                  <NavLink href="orcamento">Orçamento</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
