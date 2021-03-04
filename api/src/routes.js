@@ -1,59 +1,15 @@
 const express = require('express');
-const  Client  = require('./models/db');
+const cors = require('cors');
+const Controllers = require('./Controllers/Controllers');
 
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-app.post("/singUp",async (req,res)=>{
-    const { 
-    topTitle,
-    caption,
-    topTexttoBtn,
-    topLinkBtn, 
-    serTitle,
-    serSubTitle,
-    serOneIcon,
-    serOneTitle,
-    serOneDesc,
-    serTwoIcon,
-    serTowTitle,
-    serTowDesc,
-    serTreeIcon,
-    serTreeTitle,
-    serTreeDesc
-   } = req.body;
-
-    const response = await Client.create({
-        topTitle,
-        caption,
-        topTexttoBtn,
-        topLinkBtn, 
-        serTitle,
-        serSubTitle,
-        serOneIcon,
-        serOneTitle,
-        serOneDesc,
-        serTwoIcon,
-        serTowTitle,
-        serTowDesc,
-        serTreeIcon,
-        serTreeTitle,
-        serTreeDesc
-    })
-    .then(response=>{
-        return res.send( response );
-    })
-    .catch(err =>{ return res.send( { message: err }); })
-  });
-
-app.get("/get",async (req,res)=>{
-  const response = await Client.findOne()
-  .then(response=>{
-    res.json({ message: response });
-  })
-  .catch(err=>{ return( res.send({ message: err}));});
- 
-});
+app.post("/singUp",Controllers.singUp);
+app.post("/orcamento",Controllers.singUpOrcamento);
+app.get("/load",Controllers.load)
+app.get("/loadOrcamento",Controllers.loadOrcamento);
 
 module.exports = app;
